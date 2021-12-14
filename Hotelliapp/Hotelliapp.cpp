@@ -156,7 +156,7 @@ void hotelli::display()
         if (room_no == r)
         {
             system("cls");
-            cout << "\n Cusromer Details";
+            cout << "\n Asiakkaan tiedot";
             cout << "\n ----------------";
             cout << "\n\n Huone numero " << room_no;
             cout << "\n Sukunimi: " << Sukunimi;
