@@ -45,7 +45,7 @@ void hotelli::etusivu()
         cout << "\n\t\t\t\t\t\t3.Varatut Huoneet";
         cout << "\n\t\t\t\t\t\t4.Muokkaa varauksia";
         cout << "\n\t\t\t\t\t\t5.Exit";
-        cout << "\n\n\t\t\t\t\t\tSyt valintasi: ";
+        cout << "\n\n\t\t\t\t\t\tSyötä valintasi: ";
         cin >> choice;
 
         switch (choice)
@@ -66,8 +66,8 @@ void hotelli::etusivu()
 
         default:
         {
-            cout << "\n\n\t\t\tVr valinta.!!!";
-            cout << "\n\t\t\tPaina mit tahansa nppint jatkaaksesi....!!";
+            cout << "\n\n\t\t\tVäärä valinta.!!!";
+            cout << "\n\t\t\tPaina mitä tahansa näppäinät jatkaaksesi....!!";
             _getch();
         }
         }
@@ -85,16 +85,16 @@ void hotelli::add()
     int hinta;
     ofstream fout("Record.dat", ios::app);
 
-    cout << "\n Syt asiakastiedot";
+    cout << "\n Syötä asiakastiedot";
     cout << "\n ----------------------";
     cout << "\n\n Huoneiden numerot: ";
-    cout << "\n Huoneita yhteens 1 - 50";
-    cout << "\n Normaalit huoneet 1 - 30, hinta 150 ylt.";
-    cout << "\n Luksushuone 31 - 45, hinta 200 ylt.";
-    cout << "\n Sviitit 46 - 50, hinta 300 ylt.";
-    // cout << "\n Mink hintaisessa huoneessa tahtoisit ypy? 150, 200 vai 300?" << endl;
+    cout << "\n Huoneita yhteensä 1 - 50";
+    cout << "\n Normaalit huoneet 1 - 30, hinta 150 euroa yöltä.";
+    cout << "\n Luksushuone 31 - 45, hinta 200 euroa yöltä.";
+    cout << "\n Sviitit 46 - 50, hinta 300 euroa yöltä.";
+    // cout << "\n Minkä hintaisessa huoneessa tahtoisit yöpyä? 150€, 200€ vai 300€?" << endl;
     // cin >> hinta;
-    cout << " Syt huoneen numero, jossa tahtoisit ypy: " << endl;
+    cout << " Syötä huoneen numero, jossa tahtoisit yöpyä: " << endl;
     cin >> r;
     flag = check(r);
 
@@ -110,28 +110,28 @@ void hotelli::add()
 
 
     if (flag)
-        cout << "\n Pahoittelut!!! Huone on tll hetkell varattu";
+        cout << "\n Pahoittelut!!! Huone on tällä hetkellä varattu";
 
     else
     {
         room_no = r;
-        cout << " Syt sukunimesi: ";
+        cout << " Syötä sukunimesi: ";
         cin >> Sukunimi;
-        cout << " Kotiosoite ilman vlimerkkej: ";
+        cout << " Kotiosoite ilman välimerkkejä: ";
         cin >> osoite;
         cout << " Puhelinnumero: ";
         cin >> puhelin_nmr;
         cout << " Milloin saavut (dd-mm-yyyy): ";
         cin >> saapuminen;
-        cout << " Kuinka monta yt tahdot viipy?:" << endl;
+        cout << " Kuinka monta yötä tahdot viipyä?:" << endl;
         cin >> nights;
         cout << "\n Huoneen varauksen summa tulee olemaan:" << hinta * nights << " Euroa" << endl;
 
         fout.write((char*)this, sizeof(hotelli));
-        cout << "\n\n Huone on nyt varattu teille! Hyv pivnjatkoa. :)" << endl;
+        cout << "\n\n Huone on nyt varattu teille! Hyvää päivänjatkoa. :)" << endl;
     }
 
-    cout << "\n\n Paina mit tahansa nppint palataksesi etusivulle.";
+    cout << "\n\n Paina mitä tahansa näppäintä palataksesi etusivulle.";
     _getch();
     fout.close();
 }
@@ -146,7 +146,7 @@ void hotelli::display()
     ifstream fin("Record.dat", ios::in);
     int r, flag;
 
-    cout << "\n Syt huonenmumero kenen asiakkaan tietoja tahdot tarkastella " << endl;
+    cout << "\n Syötä huonenmumero kenen asiakkaan tietoja tahdot tarkastella " << endl;
     cin >> r;
 
     while (!fin.eof())
@@ -156,28 +156,28 @@ void hotelli::display()
         if (room_no == r)
         {
             system("cls");
-            cout << "\n Asiakkaan tiedot";
+            cout << "\n Cusromer Details";
             cout << "\n ----------------";
             cout << "\n\n Huone numero " << room_no;
             cout << "\n Sukunimi: " << Sukunimi;
             cout << "\n Osoite: " << osoite;
             cout << "\n Puhelin numero: " << puhelin_nmr;
-            cout << "\n Saapumispivmr: " << saapuminen;
-            cout << "\n iden lukumr: " << nights;
+            cout << "\n Saapumispäivämäärä: " << saapuminen;
+            cout << "\n Öiden lukumäärä: " << nights;
             flag = 1;
             break;
         }
     }
     if (flag == 0)
-        cout << "\n Huonetta jota etsit ei ole tai se on tll hetkell vapaana!!";
-    cout << "\n\n Paina mit tahansa nappia jatkaaksesi!!";
+        cout << "\n Huonetta jota etsit ei ole tai se on tällä hetkellä vapaana!!";
+    cout << "\n\n Paina mitä tahansa nappia jatkaaksesi!!";
     _getch();
     fin.close();
 }
 //2. valinta eli asiakkaan tiedot loppuu.
 
-//3. valinta, eli nytt kaikki varatut huoneet ja asiakkaiden tiedot huoneissa.
-//listassa ei ny kkset ja pivmrn jlkeen ilmestyy ylimrinen merkki, vlill tekee jostain syyst tuplana bookkauksen listaan -- tyn alla......
+//3. valinta, eli näyttää kaikki varatut huoneet ja asiakkaiden tiedot huoneissa.
+//listassa ei näy ääkköset ja päivämäärän jälkeen ilmestyy ylimääräinen merkki, välillä tekee jostain syystä tuplana bookkauksen listaan -- työn alla......
 void hotelli::rooms()
 {
     std::locale::global(std::locale(""));
@@ -185,7 +185,7 @@ void hotelli::rooms()
     ifstream fin("Record.dat", ios::in);
     cout << "\n\t\t\t    Lista varatuista huoneista";
     cout << "\n\t\t\t    ----------------------";
-    cout << "\n\n Huoneen no.\tSukunimi\t\tOsoite\t\tPuh-numero\t\tSaapumispiv\t\tiden mr:\n";
+    cout << "\n\n Huoneen no.\tSukunimi\t\tOsoite\t\tPuh-numero\t\tSaapumispäivä\t\tÖiden määrä:\n";
 
     while (!fin.eof())
     {
@@ -194,7 +194,7 @@ void hotelli::rooms()
         cout << "\t\t" << osoite << "\t" << puhelin_nmr;
         cout << "\t\t" << saapuminen << "\t\t" << nights;
     }
-    cout << "\n\n\n\n\t\t\tPaina mit tahansa nappia jatkaaksesi!!";
+    cout << "\n\n\n\n\t\t\tPaina mitä tahansa nappia jatkaaksesi!!";
 
     _getch();
     fin.close();
@@ -212,12 +212,12 @@ void hotelli::edit()
     cout << "\n ---------";
     cout << "\n\n 1.Muokkaa asiakkaan tietoja";
     cout << "\n 2.Poista asiakas";
-    cout << "\n Syt valintasi: ";
+    cout << "\n Syötä valintasi: ";
 
     cin >> choice;
     system("cls");
 
-    cout << "\n Syt huoneen numero: ";
+    cout << "\n Syötä huoneen numero: ";
     cin >> r;
 
     switch (choice)
@@ -226,9 +226,9 @@ void hotelli::edit()
         break;
     case 2:	delete_rec(r);
         break;
-    default: cout << "\n Vr valinta!!";
+    default: cout << "\n Väärä valinta!!";
     }
-    cout << "\n Paina mit tahansa nappia jatkaaksesi!!";
+    cout << "\n Paina mitä tahansa nappia jatkaaksesi!!";
 
     _getch();
 }
@@ -251,13 +251,11 @@ int hotelli::check(int r)
     return(flag);
 }
 
-
 //Funktio jolla muokataan asiakkaan tietoja
 void hotelli::modify(int r)
 {
     std::locale::global(std::locale(""));
     long pos, flag = 0;
-
     fstream file("Record.dat", ios::in | ios::out | ios::binary);
 
     while (!file.eof())
@@ -275,20 +273,19 @@ void hotelli::modify(int r)
             cin >> osoite;
             cout << " Puhelin no: ";
             cin >> puhelin_nmr;
-            cout << " Saapumispiv: ";
+            cout << " Saapumispäivä: ";
             cin >> saapuminen;
-            cout << "Yvyttvt yt: ";
+            cout << "Yövyttävät yöt: ";
             cin >> nights;
             file.seekg(pos);
             file.write((char*)this, sizeof(hotelli));
-            cout << "\n Asiakastiedot on pivitetty!";
+            cout << "\n Asiakastiedot on päivitetty!";
             flag = 1;
             break;
         }
-
     }
     if (flag == 0)
-        cout << "\n Huonenumeroa ei ole tai se ei ole kytss!!";
+        cout << "\n Huonenumeroa ei ole tai se ei ole käytössä!!";
     file.close();
 }
 //Asiakastietojen muokkauksen loppuu
@@ -311,7 +308,7 @@ void hotelli::delete_rec(int r)
             cout << "\n Sukunimi: " << Sukunimi;
             cout << "\n Osoite: " << osoite;
             cout << "\n Puhelin numero: " << puhelin_nmr;
-            cout << "\n\n Tahdotko poistaa asiakkaan tiedot(y/n): ";
+            cout << "\n\n Tahdotko poistaa asiakkaan tiedot(y/n)(y=kyllä, n=en): ";
             cin >> ch;
 
             if (ch == 'n')
@@ -336,24 +333,20 @@ void hotelli::delete_rec(int r)
 //Poistofunktio loppuu
 //4. valinta loppuu
 
-//Alkusivu/etusivu, jossa esitelln mik ty on.
+//Alkusivu/etusivu, jossa esitellään mikä työ on.
 int main()
 {
     std::locale::global(std::locale(""));
     hotelli h;
 
     system("cls");
-
     cout << "\n\n\n\t\t\t\t\t\t**********************************";
     cout << "\n\t\t\t\t\t\t** Hotellihuoneen varausohjelma **";
     cout << "\n\t\t\t\t\t\t**********************************";
-
-    cout << "\n\n\n\n\n\n\t\t\t\t\t** C++ Harjoitusty by Christian Eriksson **";
-
-    cout << "\n\n\n\n\n\n\n\t\t\t\t\tPaina mit tahansa nppint aloittaaksesi ohjelman! :)";
+    cout << "\n\n\n\n\n\n\t\t\t\t\t** C++ Harjoitustyö by Christian Eriksson **";
+    cout << "\n\n\n\n\n\n\n\t\t\t\t\tPaina mitä tahansa näppäintä aloittaaksesi ohjelman! :)";
 
     _getch();
-
     h.etusivu();
     return 0;
 }
